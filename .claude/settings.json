@@ -3,6 +3,7 @@
     "allow": [
       "Bash(ruby:*)",
       "Bash(chmod:*)",
+      "Bash(mkdir:*)",
       "Read(/Users/maeve/projects/personal/aoc-2025/**)"
     ]
   }
