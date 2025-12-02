@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ruby:*)",
+      "Bash(chmod:*)",
+      "Read(/Users/maeve/projects/personal/aoc-2025/**)"
+    ]
+  }
+}
