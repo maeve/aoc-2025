@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-lines = File.readlines('./input.txt').map(&:chomp)
+input = File.readlines('./input.txt').map(&:chomp)
 
-# TODO: Implement solution
+fresh_ingredients = []
 
-puts "Answer: #{result}"
+until (line = input.shift).empty?
+  start, finish = line.split('-').map(&:to_i)
+  fresh_ingredients += (start..finish).to_a
+end
+
+puts "Answer: #{fresh_ingredients.uniq.size}"
