@@ -1,8 +1,18 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-lines = File.readlines('./input.txt').map(&:chomp)
+input = File.readlines('./input.txt').map(&:chomp)
 
-# TODO: Implement solution
+ranges = []
+fresh_ingredients = []
 
-puts "Answer: #{result}"
+until (line = input.shift).empty?
+  start, finish = line.split('-').map(&:to_i)
+  ranges << (start..finish)
+end
+
+input.each do |ingredient|
+  fresh_ingredients << ingredient if ranges.any? { |r| r.include?(ingredient.to_i) }
+end
+
+puts "Answer: #{fresh_ingredients.size}"
