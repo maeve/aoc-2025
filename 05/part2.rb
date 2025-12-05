@@ -3,11 +3,23 @@
 
 input = File.readlines('./input.txt').map(&:chomp)
 
-fresh_ingredients = []
+ranges = []
 
 until (line = input.shift).empty?
-  start, finish = line.split('-').map(&:to_i)
-  fresh_ingredients += (start..finish).to_a
+  range = Range.new(*line.split('-').map(&:to_i))
+
+  overlaps, ranges = ranges.partition { |r| r.overlap?(range) }
+
+  if overlaps.empty?
+    ranges << range
+  else
+    start = [range.min, *overlaps.map(&:min)].min
+    finish = [range.max, *overlaps.map(&:max)].max
+
+    ranges << (start..finish)
+  end
 end
 
-puts "Answer: #{fresh_ingredients.uniq.size}"
+fresh_ingredients = ranges.map { |r| r.max - r.min + 1 }
+
+puts "Answer: #{fresh_ingredients.sum}"
